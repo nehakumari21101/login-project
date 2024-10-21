@@ -1,0 +1,122 @@
+body{
+    background: lightblue;
+}
+body {
+    font-family: Arial, sans-serif;
+    /* margin: 0;
+    padding: 0; */
+    background-color: #f4f4f4;
+}
+.login-container{
+    /* border: 1px solid black; */
+    width: 350px;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin:auto;
+    margin-top: 100px;
+    border-radius: 10px;
+    padding: 15px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+.btn{
+    padding: 5px 25px;
+}
+.contents{
+    padding: 10px;
+    /* border: 1px solid black; */
+}
+
+.input{
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.button{
+    width:330px;
+    padding: 15px;
+    border-radius: 5px;
+    background: #0a3368;
+    color: white;
+    border: none;
+    margin-top:15px;
+    margin-left:5px;
+}
+
+
+
+.right{
+    text-align: right;
+    margin-right: 15px;
+}
+
+
+.btns{
+    text-align: center;
+    margin-top: 20px;
+    border: none;
+    /* border: 1px solid black; */
+    width: 290px;
+}
+
+.button-signup{
+      border-radius: 10px 10px 0 0;
+      width: 50%;
+      padding: 10px 0;
+      background: #7f7b7b30;
+      border: none;
+}
+
+.button-login{
+    border-radius: 10px 10px 0 0;
+    width: 50%;
+    padding: 10px 0;
+    background: #0a3368;
+    color: white;
+    border: none;
+}
+
+.input-label{
+    padding-left: 10px;
+}
+
+/* Registration */
+
+.reg-container{
+    /* border: 1px solid black; */
+    padding: 20px;
+    margin: auto;
+    width: 370px;
+    margin-top: 95px;
+    background:white;
+    border-radius: 10px;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+input{
+    margin: 10px;
+    padding: 8px;
+    width: 300px;
+}
+
+select{
+    padding: 8px;
+}
+
+.btn-register{
+    margin: 10px;
+    padding: 10px;
+    width: 320px;
+    background:  #0a3368;
+    color: white;
+    border: none;
+    font-size:15px;
+    /* box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); */
+    /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+}
+
