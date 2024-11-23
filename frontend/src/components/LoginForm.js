@@ -1,37 +1,66 @@
 import { useState } from "react";
+import { handleError } from "../utils";
+import { handleSuccess } from "../utils";
 
 const LoginForm = () => {
   const [loginInfo, setLoginInfo] = useState({
     username: "",
     password: "",
-  })
+  });
 
-  let handleInputChange = (event) =>{
-    let fieldName= event.target.name;
+  let handleInputChange = (event) => {
+    let fieldName = event.target.name;
     let newValue = event.target.value;
 
-    setLoginInfo((currData)=>{
+    setLoginInfo((currData) => {
       currData[fieldName] = newValue;
-      return {...currData};
-    })
-  }
+      return { ...currData };
+    });
+  };
 
-  let handleSubmit = (event) =>{
+  let handleSubmit = async (event) => {
     event.preventDefault();
     console.log(loginInfo);
     setLoginInfo({
       username: "",
       password: "",
-    })
-    // const response = fetch("")
-  }
- 
+    });
+    try {
+      const url = "http://localhost:8080/login";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginInfo),
+      });
+      const result = await response.json();
+      const { success, message, error } = result;
+      if (success) {
+        handleSuccess(message);
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      } else if (error) {
+        const details = error?.details[0].message;
+        handleError(details);
+      } else if (!success) {
+        handleError(message);
+      }
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="login-container">
       <div className="contents">
         <h2>Login Form</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="username" className="input-label">What's your e-mail?</label>
+          <label htmlFor="username" className="input-label">
+            What's your e-mail?
+          </label>
           <input
             type="text"
             className="input input-text"
@@ -44,7 +73,9 @@ const LoginForm = () => {
 
           <br />
 
-          <label htmlFor="password" className="input-label">Your password</label>
+          <label htmlFor="password" className="input-label">
+            Your password
+          </label>
           <input
             type="password"
             className="input input-pass"
@@ -56,13 +87,13 @@ const LoginForm = () => {
           />
 
           <button className="button ">Login</button>
-          <p className="right">
+          {/* <p className="right">
             <a href="/signup">Forgot Your Password?</a>
-          </p>
+          </p> */}
           <p className="right">
-          <a href="/signup">Signup</a>
+            Don't have an account?
+            <a href="/signup">Signup</a>
           </p>
-          
         </form>
 
         {/* <Link></Link> */}

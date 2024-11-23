@@ -1,12 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { handleError } from "../utils";
+import { handleSuccess } from "../utils";
 
 const SignupForm = () => {
+
   const [signupInfo, setSignupInfo] = useState({
     name: "",
     email: "",
     password: "",
     phone: "",
   });
+
+  const navigate = useNavigate();
 
   const handleInputsChange = (event) => {
     let fieldName = event.target.name;
@@ -18,8 +25,13 @@ const SignupForm = () => {
     });
   };
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const {name, email,password, phone} = signupInfo;
+    if(!name || !email || !password || !phone){
+      return handleError("name, email, password, phone are required");
+    }
     console.log(signupInfo);
     setSignupInfo({
       name: "",
@@ -38,8 +50,21 @@ const SignupForm = () => {
         body: JSON.stringify(signupInfo),
       });
       const result = await response.json();
+      const { success, message, error } = result;
+      if(success){
+        handleSuccess(message);
+        setTimeout(()=>{
+          navigate("/login")
+        }, 1000)
+      }else if(error){
+        const details = error?.details[0].message;
+        handleError(details);
+      }else if(!success){
+        handleError(message);
+      }
       console.log(result);
     } catch (err) {
+      handleError(err);
       console.log(err);
     }
   };
@@ -89,7 +114,7 @@ const SignupForm = () => {
           placeholder="Password"
           value={signupInfo.password}
           onChange={handleInputsChange}
-          required
+          // required
         />
         <br />
         <br />
@@ -109,8 +134,9 @@ const SignupForm = () => {
         <br />
         <br />
         <button className="btn-register">Submit</button>
-        <a href="/">cancel</a>
+        <a href="/login">cancel</a>
       </form>
+      <ToastContainer/>
     </div>
   );
 };
