@@ -13,9 +13,9 @@ const PORT = process.env.PORT || 8080;
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post('/login', LoginValidation, Login);
+app.post('/', LoginValidation, Login);
 app.post("/signup", SignupValidation, Signup);
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () =>{
     console.log("app is listening...");
 })

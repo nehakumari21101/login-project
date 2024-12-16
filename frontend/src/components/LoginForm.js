@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { handleError } from "../utils";
 import { handleSuccess } from "../utils";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [loginInfo, setLoginInfo] = useState({
     username: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   let handleInputChange = (event) => {
     let fieldName = event.target.name;
@@ -39,7 +42,7 @@ const LoginForm = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/");
+          navigate("/home");
         }, 1000);
       } else if (error) {
         const details = error?.details[0].message;

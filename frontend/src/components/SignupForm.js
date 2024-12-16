@@ -134,7 +134,7 @@ const SignupForm = () => {
         <br />
         <br />
         <button className="btn-register">Submit</button>
-        <a href="/login">cancel</a>
+        <a href="/">cancel</a>
       </form>
       <ToastContainer/>
     </div>

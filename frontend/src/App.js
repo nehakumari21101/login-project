@@ -15,8 +15,12 @@ const Applayout = () => {
 
 const appRouter = createBrowserRouter([
   {
-    path:"/",
+    path:"/home",
     element: <Applayout/>
+  },
+  {
+    path:"/",
+    element: <LoginForm/>
   },
   {
     path:"/login",
